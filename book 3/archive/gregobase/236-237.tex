@@ -1,0 +1,98 @@
+% !TEX TS-program = lualatex
+% !TEX encoding = UTF-8
+
+% This is a simple template for a LuaLaTeX document using gregorio scores.
+
+\documentclass[letterpaper,12pt]{book} % use larger type; default would be 10pt
+
+\input{header.inc}
+\gresetheadercapture{commentary}{grecommentary}{string}
+
+\newcommand{\definemag}[2]{
+	% defines \magtone, \magend, \magant, \magantlinetwo, \altclef, \magverses
+	%1 - psalm tone, e.g., 8
+	%2 - ending, e.g., G
+	\edef\magtone{#1}
+	\edef\magend{#2}
+	\newcommand{\magant}{MagnificatAntiphon}
+	\newcommand{\magantlinetwo}{Ant.~\magtone.~\magend}
+	\ifx\maggrassi\undefined\def\maggrassi{F}\fi
+	\ifx\magprotodiogenes\undefined\def\magprotodiogenes{F}\fi
+	\ifx\magsmc\undefined\def\magsmc{F}\fi
+	\StrSubstitute{\magend}{*}{star}[\expandedendmag]
+	\StrSubstitute{\magend}{*}{}[\nostarendmag]
+	\ifx\magpsalmclef\undefined\else\let\psalmclef=\magpsalmclef\fi
+	\ifx\psalmclef\undefined%
+	%psalmclef should be something like c3
+	\def\altclef{}%
+	\else%
+	\edef\altclef{_\psalmclef}%
+	\fi
+	\def\magpost{}
+	\if\maggrassi T\def\magpost{_grassi}\fi
+	\if\magprotodiogenes T\def\magpost{_protodiogenes}\fi
+	\if\magsmc T\def\magpost{_smc}\fi
+	\edef\magtex{Magnificat\if\magsolemn Tsolemn\else simple\fi\magtone\expandedendmag\altclef\magpost%
+	\ifx\magoneline\undefined\else\if\magoneline ToneLine\fi\fi}
+	\newcommand{\magverses}{%
+	%\ifx\magoneline\undefined\else\if\magoneline T\vspace{-15pt}\fi\fi
+	\input{magnificat-\magtone\nostarendmag\if\magsolemn Tsolemn\else simple\fi\if\maggrassi T-grassi\fi\if\magprotodiogenes T-protodiogenes\fi\if\magsmc T-smc\fi-verses.inc}%
+	}
+	\let\psalmclef=\undefined
+}
+\newcounter{vcounter}
+\def\boldVerse{T}
+\newenvironment{boldnumpsalmverses}[1][0]{
+	% 1 - number to start on
+	\begin{list}{% bold every other verse
+	\if\boldVerse T\textbf{\arabic{vcounter}}\global\def\boldVerse{F}%
+	\else\arabic{vcounter}\global\def\boldVerse{T}%
+	\fi.}{
+	\setlength\baselineskip{0pt}
+	\setlength\itemsep{1pt}
+	\usecounter{vcounter}
+	\setlength\parsep{0pt}
+	\setlength\labelwidth{50pt}\setlength\leftmargin{0pt}\setlength\itemindent{6ex}}
+	\setcounter{vcounter}{#1}
+}{\end{list}}
+	\newenvironment{boldnummagnificat}[2][2]{
+	% 1 - number to start on
+	% 2 - name of magnificat to include
+	\gresetinitiallines{1}
+	\gregorioscore{#2}
+	\begin{boldnumpsalmverses}[#1]
+}{\end{boldnumpsalmverses}}
+
+
+
+\geometry{letterpaper,outer=1.1in,inner=0.5in,top=0.5in,bottom=.8in}
+
+\begin{document}
+\garamondbig\Large
+\grechangestaffsize{22}
+
+\noindent\includegraphics[width=\textwidth]{236_427.png}
+%\bigskip%\bigskip
+\vfill
+
+\addfontfeature{Numbers=Lining}
+\def\magsolemn{T}
+\def\maggrassi{T}
+\definemag{8}{G}
+\def\annot{\magtone. \magend}
+
+\greseteolcustos{manual}
+\begin{boldnummagnificat}{\magtex}
+\magverses
+\end{boldnummagnificat}
+
+\noindent%\begin{center}%
+\includegraphics{magnificat-grassi.pdf}%
+
+%\bigskip\bigskip
+\vfill
+
+\noindent\includegraphics[width=\textwidth]{236_427.png}
+
+
+\end{document}

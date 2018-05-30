@@ -1,0 +1,136 @@
+% !TEX TS-program = lualatex
+% !TEX encoding = UTF-8
+
+% This is a simple template for a LuaLaTeX document using gregorio scores.
+
+\documentclass[letterpaper,12pt]{book} % use larger type; default would be 10pt
+
+\input{header.inc}
+
+\usepackage{multicol} % for columns
+\usepackage{lettrine} % for drop caps
+\usepackage{parcolumns}
+\usepackage{xstring}
+\usepackage{ifthen}
+\usepackage{calc}
+
+\geometry{letterpaper,outer=0.3in,inner=0.8in,top=0.8in,bottom=0.6in}
+
+\newcounter{dropcapcounter}
+\newcommand{\dropcap}[3][]{%
+% 1 - optional command
+% 2 - language
+% 3 - text
+%\noindent%
+\vspace*{-1ex}%
+\StrPosition{#3}{ }[\mypos]%
+\ifnum\mypos=2
+% find the next space then
+\StrPosition[2]{#3}{ }[\mypos]%
+\fi
+\setcounter{dropcapcounter}{\mypos - 1}
+\lettrine{\StrLeft{#3}{1}}%
+   {#1\StrMid{#3}{2}{\thedropcapcounter}} 
+\foreignlanguage{#2}{#1\StrGobbleLeft{#3}{\mypos}}%
+}
+
+\newcommand{\versicle}[2]{
+% 1 - latin
+% 2 - english
+\colchunk{\selectlanguage{latin}\Vbar{}~#1}
+\colchunk{\selectlanguage{american}\Vbar{}~#2}
+\colplacechunks{}
+}
+
+\newcommand{\response}[2]{
+% 1 - latin
+% 2 - english
+\colchunk{\selectlanguage{latin}\Rbar{}~#1}
+\colchunk{\selectlanguage{american}\Rbar{}~#2}
+\colplacechunks{}
+}
+
+\newcommand{\prayer}[2]{
+% 1 - latin
+% 2 - english
+% requires columns environment
+%\noindent%\selectlanguage{latin}
+\colchunk{\dropcap{latin}{#1}} % \selectlanguage{american}
+\colchunk{\dropcap{american}{#2}} \selectlanguage{latin}
+}
+
+
+\newcommand{\heading}{Salve Regina}
+
+\newcommand{\presolemn}{%
+%\setspaceafterinitial{1.5mm plus 0em minus 0em}
+%\setspacebeforeinitial{1.5mm plus 0em minus 0em}
+
+%\redlines
+}
+\newcommand{\solemninitialsize}{40}
+\newcommand{\secondlinesolemn}{1.}
+
+\newcommand{\antfilename}{SalveRegina}
+
+\newcommand{\vlatin}{Ora pro nóbis sáncta Déi Génitrix.}
+\newcommand{\venglish}{Pray for us, O holy Mother of God.}
+\newcommand{\rlatin}{Ut dígni efficiámur promissiónibus Chrísti.}
+\newcommand{\renglish}{That we may be made worthy of the promises of Christ.}
+\newcommand{\prayerlatin}{Omnípotens sempitérne Deus, qui gloriósæ Vírginis Matris Maríæ corpus et ánimam, ut dignum Fílii tui habitáculum éffici mererétur, Spíritu Sancto cooperánte præparásti~:~\dag{} da, ut cujus commemoratióne lætámur,~* ejus pia intercessióne ab instántibus malis et a morte perpétua liberémur. Per eúmdem Christum Dóminum nostrum. \Rbar~Amen.}
+\newcommand{\prayerenglish}{Almighty, everlasting God, who with the cooperation of the Holy Ghost didst prepare the body and soul of the glorious Virgin Mary, to make it fit to be the worthy dwelling of Thy Son; grant that by the loving intercession of her in whose commemoration we rejoice, we may be delivered from present ills, and from everlasting death.  Through the same Christ our Lord. \Rbar~Amen.}
+
+\def\usetwopages{T}
+
+
+\begin{document}
+
+\setlength{\columnsep}{18pt}
+\setlength{\columnseprule}{1pt}
+
+\selectlanguage{american}
+\textit{
+  The puncta cava (open notes) indicate where a male chorus can sing a drone.  These drones are always a fifth apart on either the RE and the LA or the DO and the SOL.  Then for the sections with a brace above, instead of droning, the melody is sung in parallel, either a fifth above or below.  The drone should only be interrupted at the double bars.
+}
+
+\bigskip
+
+\selectlanguage{latin}
+
+% Here we set the space around the initial.
+% Please report to http://home.gna.org/gregorio/gregoriotex/details for more details and options
+
+% Here we set the initial font. Change 43 if you want a bigger initial.
+
+% We set VII above the initial.
+{
+\greannotation{Ant.}
+\greannotation{\secondlinesolemn}
+
+% We type a text in the top right corner of the score:
+%\commentary{{\small \emph{Cf. Is. 30, 19 . 30 ; Ps. 79}}}
+
+% and finally we include the score. The file must be in the same directory as this one.
+\grechangestyle{initial}{\fontsize{40}{40}\selectfont}
+\grechangestaffsize{19}
+\garamondbig \Large \gregorioscore[a]{\antfilename Solemn-drone}}
+\bigskip
+
+\sloppy
+\begin{parcolumns}[rulebetween]{2}
+\versicle{\vlatin}{\venglish}
+\response{\rlatin}{\renglish}
+\colchunk{}
+\colplacechunks{}
+\colchunk{\hspace*{3em}Orémus.}
+\colchunk{\hspace*{3em}Let us pray,}
+\colplacechunks{}
+\colchunk{\vspace*{-1ex}%
+\lettrine{O}{mnípotens}{\selectlanguage{latin} sempitérne Deus, qui gloriósæ Vírginis Matris Maríæ corpus et ánimam, ut dignum Fílii tui habitáculum éffici mererétur, Spíritu Sancto cooperánte præparásti~:~\dag{} da, ut cujus commemoratióne lætámur,~* ejus pia intercessióne ab instántibus malis et a morte perpétua liberémur. Per eúmdem Christum Dóminum nostrum. \Rbar~Amen.}} % \selectlanguage{american}
+\colchunk{\vspace*{-1ex}%
+\lettrine{A}{lmighty,}{\selectlanguage{american} everlasting God, who with the cooperation of the Holy Ghost didst prepare the body and soul of the glorious Virgin Mary, to make it fit to be the worthy dwelling of Thy Son; grant that by the loving intercession of her in whose commemoration we rejoice, we may be delivered from present ills, and from everlasting death.  Through the same Christ our Lord. \Rbar~Amen.}}
+\colplacechunks{}
+%\prayer{\prayerlatin}{\prayerenglish}
+\end{parcolumns}
+
+\end{document}
