@@ -1,0 +1,22 @@
+\!*.pdf
+*.glog
+*.gtex
+*.aux
+*.gaux
+/book 1/archive/gregobase/*.pdf
+*.fls
+*.fdb_latexmk
+/book 1/archive/gregobase/out
+/book 1/*.pdf
+/book 1/final_page/*.pdf
+/book 1/gregorio/*.pdf
+/book 2/final_page/*.pdf
+/book 3/archive/gregobase/*.pdf
+/book 3/archive/gregobase/*.eps
+/book 3/archive/gregobase/*.count
+/book 3/archive/gregobase/out
+/book 3/final_page
+/book 3/gregorio/*.pdf
+/pre book 1/final_page
+/pre book 2/final_page
+/pre book 3/final_page
