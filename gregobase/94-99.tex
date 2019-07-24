@@ -1,0 +1,83 @@
+% !TEX TS-program = lualatex
+% !TEX encoding = UTF-8
+
+% This is a simple template for a LuaLaTeX document using gregorio scores.
+
+\documentclass[letterpaper,12pt]{book} % use larger type; default would be 10pt
+
+\input{header.inc}
+
+\geometry{letterpaper,outer=0.5in,inner=0.5in,top=1in,bottom=0.5in}
+\setcounter{page}{94}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[LE,RO]{\LARGE\fontspec[Ligatures=TeX]{Garamond Premier Pro}\textbf{\thepage}}
+\renewcommand{\headrulewidth}{0pt}
+
+\begin{document}
+\garamondbig
+\vspace*{-0.5in}
+\printsmalltitle{O Magnum Mysterium}
+
+\greannotation{Resp.}
+\greannotation{3.}
+\gregorioscore{94_re--o_magnum_mysterium--solesmes}
+
+\large
+Translation from CPDL:
+
+\noindent\emph{O great mystery and wonderful sacrament, that animals should see the new-born Lord lying in a manger!\\
+Blessed is the Virgin, whose womb was worthy to bear Christ the Lord.\\
+\Vbar{}.~Hail Mary, full of grace: the Lord is with you.\\
+Blessed is the Virgin, whose womb was worthy to bear Christ the Lord.}
+
+\pagebreak
+\LARGE
+\hbox{}\newpage
+
+\printsmalltitle{Lucis Creator \#2}
+
+\greannotation{Hymn.}
+\greannotation{8.}
+\gregorioscore{96_hy--lucis_creator_optime_(another_chant_ad_libitum)--solesmes}
+
+\bigskip
+Translation from preces-Latinae.org:
+
+\newcommand{\iteme}[1]{
+	\item\emph{#1}
+}
+
+\newcounter{vcounter}
+\begin{list}{\arabic{vcounter}.}{\usecounter{vcounter}}
+\iteme{O Blest Creator of the light, / Who mak'st the day with radiance bright, / and o'er the forming world didst call / the light from chaos first of all;}
+\iteme{Whose wisdom joined in meet array / the morn and eve, and named them Day: / night comes with all its darkling fears; / regard Thy people's prayers and tears.}
+\iteme{Lest, sunk in sin, and whelmed with strife, / they lose the gift of endless life; / while thinking but the thoughts of time, / they weave new chains of woe and crime.}
+\iteme{But grant them grace that they may strain / the heavenly gate and prize to gain: / each harmful lure aside to cast, / and purge away each error past.}
+\iteme{O Father, that we ask be done, / through Jesus Christ, Thine only Son; / Who, with the Holy Ghost and Thee, / doth live and reign eternally. Amen.}
+\end{list}
+\pagebreak
+
+\printsmalltitle{O Filii et Filiæ}
+
+\LARGE
+%\grechangestaffsize{23}
+\greannotation{Hymn.}
+\greannotation{2.}
+\gregorioscore{98_hy--o_filii_et_filiae--solesmes}
+
+\large
+Translation from preces-Latinae.org:
+
+\begin{list}{\arabic{vcounter}.}{\usecounter{vcounter}\setlength\parsep{0pt}}
+\iteme{Ye sons and daughters of the Lord, / the King of glory, King adored, / this day Himself from death restored.}
+\iteme{All in the early morning gray / went holy women on their way, / to see the tomb where Jesus lay.}
+\iteme{Of spices pure a precious store / in their pure hands these women bore, / to anoint the sacred Body o'er.}
+\iteme{The straightaway one in white they see, / who saith, ``seek the Lord: but He / is risen and gone to Galilee.''}
+\iteme{This told they Peter, told John; / who forthwith to the tomb are gone, / but Peter is by John outrun.}
+\iteme{That self-same night, while out of fear / the doors where shut, their Lord most dear / to His Apostles did appear.}
+\end{list}
+
+
+\end{document}
