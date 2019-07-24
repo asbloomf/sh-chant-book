@@ -1,0 +1,30 @@
+% !TEX TS-program = lualatex
+% !TEX encoding = UTF-8
+
+% This is a simple template for a LuaLaTeX document using gregorio scores.
+
+\documentclass[letterpaper,12pt]{book} % use larger type; default would be 10pt
+
+\input{header.inc}
+
+\geometry{letterpaper,outer=0.5in,inner=0.5in,top=1.0in,bottom=0.5in}
+\setcounter{page}{93}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[LE,RO]{\LARGE\fontspec[Ligatures=TeX]{Garamond Premier Pro}\textbf{\thepage}}
+\renewcommand{\headrulewidth}{0pt}
+
+\begin{document}
+\garamondbig
+\Large
+\grechangestaffsize{23}
+\vspace*{-0.5in}
+\printsmalltitle{Anima Christi}
+
+%\greannotation{Hymn.}
+%\greannotation{2.}
+\gresetinitiallines{0}
+\gregorioscore{93_va--anima_christi_iii--}
+
+\end{document}
